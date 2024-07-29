@@ -1,0 +1,11 @@
+<div class="sections" id="contact">
+    <h2 class="secondary-heading">contact me</h2>
+    <p class="paragraph">Submit the form below to get in touch with me</p>
+
+    <form action="/submit" method="post" class="form-container">
+        <input type="text" id="name" name="name" placeholder="Enter your name"> <br>
+        <input type="email" id="email" name="email" placeholder="Enter your email"><br>
+        <textarea type="text" rows="10" id="message" name="message" placeholder="Enter your message"></textarea><br>
+        <button class="secondary-paragraph" type="submit">Let'a talk</button>
+    </form>
+</div>

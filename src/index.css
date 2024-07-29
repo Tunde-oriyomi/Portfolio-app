@@ -1,13 +1,625 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+    --cta-btn-clr: rgb(59 130 246);
+    --arrow-btn-clr: rgb(59 130 246 / .5);
+    --ff-primary: "Roboto", sans-serif;
+    --ff-logo: "Playwrite GB S", cursive;
+    --primary-btn-clr: rgb(251 146 60);
+    --border-color: #e5e7eb;
+    --clr-btn: white;
+    --fs-primary-heading: 3rem;
+    --fs-secondary-heading: 2rem;
+    --fs-tertiary-heading: 1.2rem;
+    --fs-paragraph: 1.1rem;
+    --fs-btn: 1.2rem;
+    --box-shadow: 0 .3rem .7rem;
+    --scale-img: 1.2;
+    --scale-logo: 1.1;
+    --transition: all 300ms ease-in-out;
+    --border-rad: .5rem;
+    --padding: 0.7rem 1rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    background: linear-gradient(hsl(240, 17%, 17%), hsl(240, 10%, 8%));
+    font-size: 62.5%;
+    font-family: var(--ff-primary);
+    position: relative;
+}
+
+.primary-heading {
+    font-size: var(--fs-primary-heading);
+    color: whitesmoke;
+    text-transform: capitalize;
+    font-weight: 900;
+}
+
+.secondary-heading {
+    font-size: var(--fs-secondary-heading);
+    text-decoration: underline;
+    color: whitesmoke;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.tertiary-heading {
+    font-size: var(--fs-tertiary-heading);
+    text-decoration: underline;
+    color: whitesmoke;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.paragraph {
+    font-size: var(--fs-paragraph);
+    color: whitesmoke;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.secondary-paragraph {
+    font-size: 1rem;
+    color: whitesmoke;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+/* styling the navigation button */
+.btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .8rem;
+    background: var(--primary-btn-clr);
+    color: var(--clr-btn);
+}
+
+/* resizing the image in the button and removing its bg */
+.btn img {
+    width: 1rem;
+    background: transparent;
+}
+
+.sections {
+    margin-inline: 8%;
+    margin-block: 5rem;
+}
+
+/*  changing some custom properties for small and medium screens, respectively */
+@media (max-width: 50em) {
+    :root {
+        --fs-primary-heading: 2rem;
+        --fs-secondary-heading: 1.5rem;
+        --fs-tertiary-heading: 1rem;
+    }
+
+    .sections {
+        margin-inline: 1%;
+        margin-block: 5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --fs-primary-heading: 1.5rem;
+        --fs-secondary-heading: 1rem;
+        --fs-tertiary-heading: 1rem;
+    }
+
+    .sections {
+        margin-inline: 1%;
+        margin-block: 5rem;
+    }
+}
+
+button {
+    border: 0;
+    border-radius: var(--border-rad);
+    padding-inline: 1rem;
+    font-weight: 700;
+    font-size: .8rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button:hover {
+    scale: 1.1;
+}
+
+/* setting up the dangling arrow */
+.up-arrow {
+    position: fixed;
+    color: white;
+    bottom: 3rem;
+    right: 1.5rem;
+    border-radius: 50%;
+    background: var(--cta-btn-clr);
+    padding: 1rem;
+    transition: var(--transition);
+    animation: bounce 1s infinite;
+}
+
+/* targeting the image */
+.up-arrow img {
+    width: 1.5rem;
+}
+
+/* setting up the navigation bar */
+.navbar {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 5%;
+
+    img {
+        width: 2rem;
+    }
+}
+
+/* hiding the hamburger menu in large screen size */
+.navbar .mobile-nav-toggle {
+    display: none;
+    background: transparent;
+    color: white;
+}
+
+.logo {
+    font-size: 2rem;
+    background: linear-gradient(45deg, #1f1fff, hsl(120, 95%, 35%), hsl(283, 93%, 32%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: var(--ff-logo);
+    cursor: pointer;
+}
+
+.navlinks {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.navlinks > li {
+    font-size: .9rem;
+}
+
+.navlinks > li a {
+    text-decoration: none;
+    color: var(--border-color);
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.navlinks > li a:hover {
+    opacity: 1;
+    color: var(--cta-btn-clr);
+}
+
+/* for small screens */
+@media (max-width: 1024px) {
+    .up-arrow, .navbar, .sections {
+        margin-inline: 0;
+    }
+
+    body {
+        margin-inline: 5%;
+    }
+
+    header {
+        position: relative;
+        justify-content: space-between;
+    }
+
+    .btn {
+        display: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .intro-btn .small-btn {
+        display: none;
+    }
+
+    .navlinks {
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 2rem;
+    }
+
+    .primary-navigation {
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 5rem;
+        background: white;
+        border-radius: var(--border-rad);
+        transition: var(--transition);
+        width: 100%;
+
+    }
+
+    .navlinks > li {
+        font-size: 1.2rem;
+        margin-top: 2rem;
+
+    }
+
+    .navlinks > li a {
+        opacity: 1;
+        color: black;
+    }
+
+    .icon-close, .hamburger {
+        background: white;
+        border-radius: .5rem;
+    }
+
+    .navbar .mobile-nav-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .show-nav {
+        display: block;
+        transition: var(--transition);
+    }
+
+    .hide-nav {
+        display: none;
+        transition: var(--transition);
+    }
+}
+
+
+.hero {
+    margin-block: 10rem;
+    margin-inline: 14%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10rem;
+    place-items: center;
+}
+
+.hero > img {
+    width: min(25rem, 100%);
+    border-radius: 1rem;
+    align-items: center;
+}
+
+.intro:first-child {
+    color: whitesmoke;
+    font-size: 1.5rem;
+}
+
+.intro h2 > .span {
+    font-weight: 300;
+}
+
+.intro .paragraph {
+    font-size: 0.9rem;
+}
+
+.intro button {
+    margin-top: 2rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary-btn-clr);
+    color: var(--clr-btn);
+}
+
+.intro > .intro-btn {
+    display: flex;
+    flex-direction: column;
+    width: 8rem;
+}
+
+.intro > .intro-btn button {
+    width: 100%;
+}
+
+.intro .updating-text {
+    color: var(--cta-btn-clr);
+    font-weight: 500;
+    text-transform: capitalize;
+    position: relative;
+    text-decoration: underline white;
+}
+
+/* using psuedo element to typewrite the text */
+/* .updating-text::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: hsl(240, 15%, 14%);
+    top: 0;
+    left: 0;
+    border-left: .2rem solid var(--cta-btn-clr);
+    animation: animate 4.5s steps(9) infinite;
+} */
+
+.social-icons {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+}
+
+.social-icons > a {
+    background: hsl(240, 15%, 13%);
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    transition: var(--transition);
+}
+
+.social-icon {
+    width: 1.5rem;
+    background: white;
+    padding: .2rem;
+    border-radius: 30%;
+    scale: 1;
+}
+
+/* for small screens */
+@media (max-width: 50em) {
+    .hero {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        margin-inline: 1%;
+        margin-block: 1rem;
+    }
+
+    .intro:first-child {
+        font-size: 1rem;
+    }
+
+    /* .updating-text::before {
+        background: hsl(240, 15%, 16.5%);
+    } */
+
+    .intro-btn .small-btn {
+        display: block;
+        gap: 1rem;
+    }
+}
+
+/* for medium screens */
+@media (max-width: 1024px) {
+
+    .intro:first-child {
+        font-size: 1rem;
+    }
+}
+
+/* On to the project section */
+.style {
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.projects img {
+    height: 90%;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.projects .works {
+    display: grid;
+    /* i want each projects to have same size */
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.projects .works .work {
+    display: grid;
+    grid-template-rows: 1fr;
+    border: .1rem solid var(--border-color);
+    border-radius: var(--border-rad);
+}
+
+.projects .works .work .desc-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projects .btn_section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-block: 1rem;
+}
+
+/* .project-1 {
+    background-image: url("./Assets/monkeytype.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    scale: 1;
+    transition: var(--transition);
+    
+    &:hover {
+        scale: 1.2;
+    }
+}
+
+.project-2 {
+    background-image: url("./Assets/virtualkeyboard.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: var(--transition); 
+}
+
+.project-3 {
+    background-image: url("./Assets/todolist.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: var(--transition); 
+} */
+
+.projects button {
+    background: var(--cta-btn-clr);
+    color: white;
+    padding: var(--padding);
+}
+
+/* for small screens */
+@media (max-width: 50em) {
+    .projects img {
+        width: 100%;
+        transition: var(--transition);
+    }
+
+    .projects .works {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .projects .works .work, img {
+        height: 10%;
+    }
+}
+
+.skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-block: 1rem;
+    margin-inline: 5%;
+}
+
+.skills img {
+    width: 5rem;
+}
+
+.skill {
+    /* created a variable so i can update just the color of the shadow */
+    --clr-shadow: white;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    box-shadow: var(--box-shadow) var(--clr-shadow);
+    transition: var(--transition);
+}
+
+.skill img:hover {
+    scale: 1.05;
+}
+
+.skill span {
+    margin-bottom: .5rem;
+}
+
+.skills > :nth-child(1) {
+    --clr-shadow: orangered;
+}
+
+.skills > :nth-child(2) {
+    --clr-shadow: rgb(47, 143, 252);
+}
+
+.skills > :nth-child(3) {
+    --clr-shadow: yellow;
+}
+
+.skills > :nth-child(4) {
+    --clr-shadow: rgb(3, 108, 228);
+}
+
+.skills > :nth-child(5) {
+    --clr-shadow: hsl(192, 95%, 39%);
+}
+
+.skills > :nth-child(6) {
+    --clr-shadow: hsl(120, 87%, 43%);
+}
+
+.skills > :nth-child(7) {
+    --clr-shadow: hsl(120, 81%, 65%);
+}
+
+.skills > :nth-child(8) {
+    --clr-shadow: #fff;
+}
+
+.skills > :nth-child(9) {
+    --clr-shadow: rgb(241, 30, 30);
+}
+
+/* for small screens */
+@media (max-width: 50em) {
+    .skills {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        place-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .skill {
+        grid-auto-rows: 1fr 1fr;
+    }
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.form-container button {
+    background: var(--cta-btn-clr);
+    color: white;
+    padding: var(--padding);
+}
+
+.form-container input,
+.form-container textarea {
+    color: white;
+    place-items: center;
+    width: 30rem;
+    background: transparent;
+    padding: 1rem;
+    font-size: 1rem;
+    border: .1rem solid var(--border-color);
+    border-radius: var(--border-rad);
+}
+
+@media (max-width: 50em) {
+    .form-container input,
+    .form-container textarea {
+        width: 70%;
+    }
+}
+
+/* animations for updating text */
+@keyframes animate {
+    40%, 60% {
+        left: 100%;
+    }
+    100% {
+        left: 0%;
+    }
+}
+
+/* animation for the bouncing arrow button */
+@keyframes bounce {
+    0% {
+        transform: translateY(1rem);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
